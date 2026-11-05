@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Americas Lite Weights — Cart and checkout</title>
+<meta name="description" content="Your cart and secure checkout at Americas Lite Weights.">
+<meta property="og:title" content="Americas Lite Weights — Cart and checkout">
+<meta property="og:description" content="Your cart and secure checkout at Americas Lite Weights.">
+<meta property="og:image" content="assets/hero-lifestyle.jpg">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&amp;family=DM+Sans:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#1F4FFF}a:hover{color:#0B2FB8}
+.btn{transition:transform .15s ease, background-color .2s ease}
+.btn:hover{transform:translateY(-2px)}
+input:focus,select:focus{outline:3px solid #1F4FFF;outline-offset:1px}
+</style>
+<style>html{scroll-behavior:smooth}</style>
+</head>
+<body>
+<template id="dc-template">
+
+<div style="font-family: 'DM Sans', system-ui, sans-serif; color: #0B0B0F; background: #F4F6FB; width: 100%; min-height: 100vh;">
+
+<header style="border-bottom: 1px solid #E6E8EE; background: #FFFFFF;">
+<div style="max-width: 1240px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
+<a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #0B0B0F;">
+<img src="assets/logo.png" alt="AmeriLogics logo" style="height: 52px; width: auto; display: block;">
+<span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 20px; letter-spacing: -0.01em;">AMERICAS LITE WEIGHTS</span>
+</a>
+<ol aria-label="Checkout progress" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px;">
+<sc-for list="{{steps}}" as="st" hint-placeholder-count="3">
+<li style="display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: {{st.bg}}; color: {{st.fg}}; font-weight: 700; font-size: 14px;"><span>{{st.n}}</span><span>{{st.label}}</span></li>
+</sc-for>
+</ol>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 14px; color: #3D414B;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Secure checkout</span>
+</div>
+</header>
+
+<div style="max-width: 1240px; margin: 0 auto; padding: 40px 24px 88px; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start;">
+
+<!-- Main column -->
+<main style="flex: 999 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 20px;">
+
+<sc-if value="{{isCart}}" hint-placeholder-val="{{ true }}">
+<div style="background: #FFFFFF; border-radius: 24px; padding: 28px;">
+<h1 style="margin: 0 0 20px; font-family: Archivo, sans-serif; font-weight: 900; font-size: 36px; letter-spacing: -0.02em;">Your Cart</h1>
+<sc-if value="{{hasItems}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column;">
+<sc-for list="{{lines}}" as="l" hint-placeholder-count="2">
+<div style="display: flex; flex-wrap: wrap; gap: 18px; align-items: center; padding: 18px 0; border-top: 1px solid #E6E8EE;">
+<div style="width: 112px; height: 96px; border-radius: 16px; overflow: hidden; background: {{l.tint}}; flex: none;">
+<img src="{{l.img}}" alt="{{l.name}}" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+</div>
+<div style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+<span style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 18px;">{{l.name}}</span>
+<span style="font-size: 14px; color: #3D414B;">{{l.detail}} · {{l.unit}} each</span>
+<button type="button" onClick="{{l.remove}}" style="align-self: flex-start; border: 0; background: none; padding: 6px 0; color: #1F4FFF; font-weight: 700; font-size: 14px; font-family: inherit; cursor: pointer; text-decoration: underline;">Remove</button>
+</div>
+<div role="group" aria-label="Quantity" style="display: flex; align-items: center; border: 2px solid #E6E8EE; border-radius: 999px;">
+<button type="button" onClick="{{l.dec}}" aria-label="Decrease quantity" style="width: 44px; height: 44px; border: 0; background: none; font-size: 20px; cursor: pointer; font-family: inherit;">−</button>
+<span style="min-width: 28px; text-align: center; font-weight: 700;">{{l.qty}}</span>
+<button type="button" onClick="{{l.inc}}" aria-label="Increase quantity" style="width: 44px; height: 44px; border: 0; background: none; font-size: 20px; cursor: pointer; font-family: inherit;">+</button>
+</div>
+<span style="min-width: 90px; text-align: right; font-weight: 700; font-size: 17px;">{{l.lineTotal}}</span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{noItems}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 32px 0; text-align: center; display: flex; flex-direction: column; gap: 14px; align-items: center;">
+<p style="margin: 0; font-size: 17px; color: #3D414B;">Your cart is empty.</p>
+<a class="btn" href="shop.html" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 999px; background: #0B0B0F; color: #FFFFFF; font-weight: 700; text-decoration: none;">Shop Now</a>
+</div>
+</sc-if>
+</div>
+<a href="shop.html" style="font-weight: 700;">← Continue shopping</a>
+</sc-if>
+
+<sc-if value="{{isCheckout}}" hint-placeholder-val="{{ false }}">
+<form onSubmit="{{placeOrder}}" style="display: flex; flex-direction: column; gap: 20px;">
+<div style="background: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px;">
+<h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 900; font-size: 32px; letter-spacing: -0.02em;">Checkout</h1>
+<div role="radiogroup" aria-label="Checkout type" style="display: flex; flex-wrap: wrap; gap: 10px;">
+<sc-for list="{{modes}}" as="m" hint-placeholder-count="2">
+<button type="button" role="radio" aria-checked="{{m.on}}" onClick="{{m.pick}}" style="flex: 1 1 200px; min-height: 52px; border-radius: 14px; border: 2px solid {{m.border}}; background: {{m.bg}}; font-family: inherit; font-weight: 700; font-size: 15px; cursor: pointer; color: #0B0B0F;">{{m.label}}</button>
+</sc-for>
+</div>
+<sc-if value="{{isAccount}}" hint-placeholder-val="{{ false }}">
+<p style="margin: 0; font-size: 15px; color: #3D414B;">Sign in to see order history and tracking. <a href="#">Sign in</a> · <a href="#">Create account</a></p>
+</sc-if>
+<h2 style="margin: 8px 0 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px;">Contact</h2>
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<label for="co-email" style="font-weight: 700; font-size: 14px;">Email (for your order confirmation)</label>
+<input id="co-email" type="email" required="required" autocomplete="email" style="min-height: 48px; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CCD4; font-size: 16px; font-family: inherit;">
+</div>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px;">
+<h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px;">Shipping address</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+<div style="display: flex; flex-direction: column; gap: 6px;"><label for="co-first" style="font-weight: 700; font-size: 14px;">First name</label><input id="co-first" required="required" autocomplete="given-name" style="min-height: 48px; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CCD4; font-size: 16px; font-family: inherit;"></div>
+<div style="display: flex; flex-direction: column; gap: 6px;"><label for="co-last" style="font-weight: 700; font-size: 14px;">Last name</label><input id="co-last" required="required" autocomplete="family-name" style="min-height: 48px; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CCD4; font-size: 16px; font-family: inherit;"></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px;"><label for="co-addr" style="font-weight: 700; font-size: 14px;">Street address</label><input id="co-addr" required="required" autocomplete="street-address" style="min-height: 48px; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CCD4; font-size: 16px; font-family: inherit;"></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px;">
+<div style="display: flex; flex-direction: column; gap: 6px;"><label for="co-city" style="font-weight: 700; font-size: 14px;">City</label><input id="co-city" required="required" autocomplete="address-level2" style="min-height: 48px; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CCD4; font-size: 16px; font-family: inherit;"></div>
+<div style="display: flex; flex-direction: column; gap: 6px;"><label for="co-state" style="font-weight: 700; font-size: 14px;">State</label><input id="co-state" required="required" autocomplete="address-level1" style="min-height: 48px; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CCD4; font-size: 16px; font-family: inherit;"></div>
+<div style="display: flex; flex-direction: column; gap: 6px;"><label for="co-zip" style="font-weight: 700; font-size: 14px;">ZIP code</label><input id="co-zip" required="required" autocomplete="postal-code" inputmode="numeric" style="min-height: 48px; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CCD4; font-size: 16px; font-family: inherit;"></div>
+</div>
+<div style="border-radius: 14px; background: #F4F6FB; padding: 14px 16px; font-size: 15px; color: #3D414B;">Shipping rates are calculated from your address. [Live rates connect here]</div>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px;">
+<h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px;">Payment</h2>
+<div style="border: 2px dashed #C9CCD4; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
+<span style="font-weight: 700; font-size: 16px;">Secure card entry by Stripe</span>
+<span style="font-size: 14px; color: #3D414B; line-height: 1.5;">Credit and debit card fields load here from Stripe. Card numbers go directly to Stripe and are never stored by Americas Lite Weights.</span>
+</div>
+<button type="submit" class="btn" style="min-height: 56px; border-radius: 999px; border: 0; background: #1F4FFF; color: #FFFFFF; font-weight: 700; font-size: 17px; font-family: inherit; cursor: pointer;">Place Order</button>
+<p style="margin: 0; font-size: 13px; color: #3D414B;">By placing your order you agree to our <a href="policies.html">Terms &amp; Conditions</a> and <a href="policies.html">Return &amp; Refund Policy</a>.</p>
+</div>
+</form>
+<button type="button" onClick="{{toCart}}" style="align-self: flex-start; border: 0; background: none; padding: 8px 0; color: #1F4FFF; font-weight: 700; font-size: 15px; font-family: inherit; cursor: pointer;">← Back to cart</button>
+</sc-if>
+
+<sc-if value="{{isDone}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="background: #FFFFFF; border-radius: 24px; padding: 48px 32px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+<div style="width: 72px; height: 72px; border-radius: 999px; background: #FFD23F; display: flex; align-items: center; justify-content: center;"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0B0B0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+<h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 900; font-size: 36px; letter-spacing: -0.02em;">Thank you for your order!</h1>
+<p style="margin: 0; font-size: 17px; color: #3D414B; max-width: 480px; line-height: 1.5;">Order [#ORDER-NUMBER] is confirmed. A confirmation email is on its way, and tracking details follow once your order ships.</p>
+<a class="btn" href="index.html" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 999px; background: #0B0B0F; color: #FFFFFF; font-weight: 700; text-decoration: none; margin-top: 8px;">Back to Home</a>
+</div>
+</sc-if>
+</main>
+
+<!-- Summary -->
+<aside aria-label="Order summary" style="flex: 1 1 340px; min-width: 0; background: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px;">
+<h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 22px;">Order Summary</h2>
+<div style="display: flex; justify-content: space-between; font-size: 16px;"><span>Items ({{itemCount}})</span><span>{{subtotal}}</span></div>
+<div style="display: flex; justify-content: space-between; font-size: 16px;"><span>Shipping</span><span style="color: #3D414B;">Calculated at checkout</span></div>
+<div style="display: flex; justify-content: space-between; font-size: 16px;"><span>Tax</span><span style="color: #3D414B;">Calculated at checkout</span></div>
+<sc-if value="{{codeApplied}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; justify-content: space-between; font-size: 16px; color: #0E6B33; font-weight: 700;"><span>Discount ({{code}})</span><span>Applied at payment</span></div>
+</sc-if>
+<div style="border-top: 1px solid #E6E8EE; padding-top: 14px; display: flex; justify-content: space-between; font-family: Archivo, sans-serif; font-weight: 800; font-size: 22px;"><span>Subtotal</span><span>{{subtotal}}</span></div>
+<form onSubmit="{{applyCode}}" style="display: flex; flex-direction: column; gap: 6px;">
+<label for="promo" style="font-weight: 700; font-size: 14px;">Discount code</label>
+<div style="display: flex; gap: 8px;">
+<input id="promo" value="{{code}}" onChange="{{setCode}}" style="flex: 1; min-width: 0; min-height: 46px; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CCD4; font-size: 15px; font-family: inherit; text-transform: uppercase;">
+<button type="submit" style="min-height: 46px; padding: 0 18px; border-radius: 12px; border: 2px solid #0B0B0F; background: #FFFFFF; font-weight: 700; font-family: inherit; cursor: pointer;">Apply</button>
+</div>
+</form>
+<sc-if value="{{isCart}}" hint-placeholder-val="{{ true }}">
+<button type="button" class="btn" onClick="{{toCheckout}}" style="min-height: 56px; border-radius: 999px; border: 0; background: #0B0B0F; color: #FFFFFF; font-weight: 700; font-size: 17px; font-family: inherit; cursor: pointer;">Proceed to Checkout</button>
+</sc-if>
+<p style="margin: 0; font-size: 13px; line-height: 1.5; color: #3D414B;">Questions? Call (347) 751-6818 or email <a href="mailto:info@americasliteweights.com">info@americasliteweights.com</a>.</p>
+</aside>
+</div>
+</div>
+</template>
+<div id="dc-root"></div>
+<noscript><p style="padding:24px;font-family:sans-serif">Please enable JavaScript to view this site.</p></noscript>
+<script src="assets/runtime.js"></script>
+<script>
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: 'cart', mode: 'guest', code: '', codeApplied: false,
+      lines: [
+        { id: 2, name: 'AmeriLogics Dumbbell Set', detail: '(3 LB, 5 LB, 8 LB) with Rack', price: 79.99, tint: '#FFF3D1', img: 'assets/dumbbell-set.jpg', qty: 1 },
+        { id: 4, name: 'AmeriLogics Fitness Bundle', detail: 'Mat, Resistance Band, Jump Rope & Shaker', price: 39.99, tint: '#E0E8FE', img: 'assets/fitness-bundle.jpg', qty: 1 }
+      ] };
+  }
+  setQty(id, d) {
+    this.setState({ lines: this.state.lines.map((l) => l.id === id ? { ...l, qty: Math.max(1, l.qty + d) } : l) });
+  }
+  renderVals() {
+    const s = this.state;
+    const order = ['cart', 'checkout', 'done'];
+    const idx = order.indexOf(s.step);
+    const labels = ['Cart', 'Checkout', 'Confirmation'];
+    return {
+      steps: labels.map((l, i) => ({ n: String(i + 1), label: l, bg: i === idx ? '#1F4FFF' : (i < idx ? '#0B0B0F' : '#F4F6FB'), fg: i <= idx ? '#FFFFFF' : '#3D414B' })),
+      isCart: s.step === 'cart', isCheckout: s.step === 'checkout', isDone: s.step === 'done',
+      subtotal: '$' + s.lines.reduce((a, l) => a + l.price * l.qty, 0).toFixed(2),
+      lines: s.lines.map((l) => ({ ...l, unit: '$' + l.price.toFixed(2), lineTotal: '$' + (l.price * l.qty).toFixed(2), inc: () => this.setQty(l.id, 1), dec: () => this.setQty(l.id, -1), remove: () => this.setState({ lines: this.state.lines.filter((x) => x.id !== l.id) }) })),
+      hasItems: s.lines.length > 0, noItems: s.lines.length === 0,
+      itemCount: s.lines.reduce((a, l) => a + l.qty, 0),
+      toCheckout: () => { if (this.state.lines.length) this.setState({ step: 'checkout' }); },
+      toCart: () => this.setState({ step: 'cart' }),
+      placeOrder: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ step: 'done' }); },
+      modes: [['guest', 'Guest checkout'], ['account', 'Sign in / create account']].map((m) => ({ label: m[1], on: s.mode === m[0] ? 'true' : 'false', bg: s.mode === m[0] ? '#E3EAFF' : '#FFFFFF', border: s.mode === m[0] ? '#1F4FFF' : '#E6E8EE', pick: () => this.setState({ mode: m[0] }) })),
+      isAccount: s.mode === 'account',
+      code: s.code,
+      setCode: (e) => this.setState({ code: e.target.value.toUpperCase(), codeApplied: false }),
+      applyCode: (e) => { if (e && e.preventDefault) e.preventDefault(); if (this.state.code.trim()) this.setState({ codeApplied: true }); },
+      codeApplied: s.codeApplied
+    };
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>

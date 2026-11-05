@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Americas Lite Weights — Shop</title>
+<meta name="description" content="Shop AmeriLogics neoprene dumbbells, dumbbell sets, storage racks and fitness accessories.">
+<meta property="og:title" content="Americas Lite Weights — Shop">
+<meta property="og:description" content="Shop AmeriLogics neoprene dumbbells, dumbbell sets, storage racks and fitness accessories.">
+<meta property="og:image" content="assets/hero-lifestyle.jpg">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&amp;family=DM+Sans:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#1F4FFF}a:hover{color:#0B2FB8}
+.lift{transition:transform .25s ease, box-shadow .25s ease}
+.lift:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(11,11,15,.12)}
+.btn{transition:transform .15s ease, background-color .2s ease}
+.btn:hover{transform:translateY(-2px)}
+</style>
+<style>html{scroll-behavior:smooth}</style>
+</head>
+<body>
+<template id="dc-template">
+
+<div style="font-family: 'DM Sans', system-ui, sans-serif; color: #0B0B0F; background: #FFFFFF; width: 100%;">
+
+<div style="background: #0B0B0F; color: #FFFFFF; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; padding: 10px 16px; font-weight: 700;">Light Weights. Stronger You.</div>
+
+<header style="border-bottom: 1px solid #E6E8EE; background: #FFFFFF;">
+<div style="max-width: 1240px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
+<a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #0B0B0F;">
+<img src="assets/logo.png" alt="AmeriLogics logo" style="height: 52px; width: auto; display: block;">
+<span style="display: flex; flex-direction: column; line-height: 1;"><span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 20px; letter-spacing: -0.01em;">AMERICAS LITE WEIGHTS</span><span style="font-size: 11px; letter-spacing: 0.14em; color: #5A5F6B; margin-top: 4px;">LLC · BROOKLYN, NY</span></span>
+</a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px;">
+<a href="index.html" style="padding: 12px 14px; font-weight: 500; color: #0B0B0F; text-decoration: none;">Home</a>
+<a href="shop.html" style="padding: 12px 14px; font-weight: 700; color: #1F4FFF; text-decoration: none;">Shop</a>
+<a href="consultation.html" style="padding: 12px 14px; font-weight: 500; color: #0B0B0F; text-decoration: none;">Consultation</a>
+<a href="about.html" style="padding: 12px 14px; font-weight: 500; color: #0B0B0F; text-decoration: none;">About</a>
+<a href="about.html" style="padding: 12px 14px; font-weight: 500; color: #0B0B0F; text-decoration: none;">Contact</a>
+<a href="cart.html" aria-label="Cart" style="margin-left: 8px; display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: #0B0B0F; color: #FFFFFF; text-decoration: none; font-weight: 700;">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"></path></svg>
+<span>Cart ({{cartCount}})</span>
+</a>
+</nav>
+</div>
+</header>
+
+<section style="background: #1F4FFF; color: #FFFFFF;">
+<div style="max-width: 1240px; margin: 0 auto; padding: 56px 24px;">
+<p style="margin: 0 0 10px; font-size: 14px; color: #EAF0FF;"><a href="index.html" style="color: #FFFFFF;">Home</a> / Shop</p>
+<h1 style="margin: 0 0 10px; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(40px, 5vw, 64px); letter-spacing: -0.025em; text-transform: uppercase;">Shop All Equipment</h1>
+<p style="margin: 0; font-size: 18px; color: #EAF0FF; max-width: 560px; line-height: 1.5;">Colorful AmeriLogics dumbbells, sets, storage and fitness accessories.</p>
+</div>
+</section>
+
+<section style="max-width: 1240px; margin: 0 auto; padding: 40px 24px 88px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start;">
+
+<aside aria-label="Filters" style="flex: 1 1 240px; max-width: 100%; display: flex; flex-direction: column; gap: 8px;">
+<h2 style="margin: 0 0 4px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 16px; text-transform: uppercase; letter-spacing: 0.08em;">Category</h2>
+<sc-for list="{{cats}}" as="c" hint-placeholder-count="5">
+<button type="button" onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="display: flex; justify-content: space-between; align-items: center; text-align: left; min-height: 44px; padding: 0 14px; border-radius: 12px; border: 1px solid {{c.border}}; background: {{c.bg}}; color: {{c.fg}}; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer;"><span>{{c.label}}</span><span style="font-weight: 500;">{{c.count}}</span></button>
+</sc-for>
+</aside>
+
+<div style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;">
+<span style="font-size: 15px; color: #3D414B;">{{countLabel}}</span>
+<div style="display: flex; align-items: center; gap: 10px;">
+<label for="sort" style="font-size: 15px; font-weight: 700;">Sort by</label>
+<select id="sort" value="{{sort}}" onChange="{{setSort}}" style="min-height: 44px; padding: 0 14px; border-radius: 12px; border: 1px solid #C9CCD4; font-family: inherit; font-size: 15px; background: #FFFFFF;">
+<option value="featured">Featured</option>
+<option value="price-asc">Price: low to high</option>
+<option value="price-desc">Price: high to low</option>
+<option value="name">Name: A to Z</option>
+</select>
+</div>
+</div>
+
+<sc-if value="{{added}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="border-radius: 14px; background: #E3EAFF; padding: 14px 18px; font-weight: 700; font-size: 15px;">{{addedName}} added to your cart. <a href="cart.html">View cart →</a></div>
+</sc-if>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px;">
+<sc-for list="{{products}}" as="p" hint-placeholder-count="4">
+<article class="lift" style="display: flex; flex-direction: column; border: 1px solid #E6E8EE; border-radius: 20px; overflow: hidden; background: #FFFFFF;">
+<a href="product.html" style="display: block; aspect-ratio: 472 / 406; background: {{p.tint}};">
+<img src="{{p.img}}" alt="{{p.name}}" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+</a>
+<div style="padding: 18px; display: flex; flex-direction: column; gap: 6px; flex: 1;">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #5A5F6B;">{{p.cat}}</span>
+<a href="product.html" style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px; color: #0B0B0F; text-decoration: none;">{{p.name}}</a>
+<span style="font-size: 14px; color: #3D414B;">{{p.detail}}</span>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 12px; gap: 8px;">
+<span style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 22px; color: #1F4FFF;">{{p.priceLabel}}</span>
+<button type="button" class="btn" onClick="{{p.add}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: 0; background: #0B0B0F; color: #FFFFFF; font-weight: 700; font-size: 14px; font-family: inherit; cursor: pointer;">Add to Cart</button>
+</div>
+</div>
+</article>
+</sc-for>
+</div>
+</div>
+</section>
+
+<footer style="background: #0B0B0F; color: #C9CCD4;">
+<div style="max-width: 1240px; margin: 0 auto; padding: 48px 24px 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; font-size: 15px; line-height: 1.6;">
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<span style="align-self: flex-start; display: inline-flex; background: #FFFFFF; border-radius: 14px; padding: 10px 14px;"><img src="assets/logo.png" alt="AmeriLogics logo" style="height: 64px; width: auto; display: block;"></span>
+<span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 20px; color: #FFFFFF;">AMERICAS LITE WEIGHTS</span>
+<span>32 Court St. STE 904, Brooklyn, NY 11201</span>
+<span>Phone (347) 751-6818 · Fax (347) 751-6915</span>
+<a href="mailto:info@americasliteweights.com" style="color: #C9CCD4;">info@americasliteweights.com</a>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start;">
+<a href="about.html" style="color: #C9CCD4;">About</a>
+<a href="about.html" style="color: #C9CCD4;">Contact</a>
+<a href="policies.html" style="color: #C9CCD4;">Shipping</a>
+<a href="policies.html" style="color: #C9CCD4;">Returns</a>
+<a href="policies.html" style="color: #C9CCD4;">Privacy</a>
+<a href="policies.html" style="color: #C9CCD4;">Terms</a>
+</div>
+</div>
+<div style="max-width: 1240px; margin: 0 auto; padding: 16px 24px 28px; border-top: 1px solid #2A2D35; font-size: 13px;">© 2026 Americas Lite Weights LLC · Secure checkout powered by Stripe</div>
+</footer>
+</div>
+</template>
+<div id="dc-root"></div>
+<noscript><p style="padding:24px;font-family:sans-serif">Please enable JavaScript to view this site.</p></noscript>
+<script src="assets/runtime.js"></script>
+<script>
+
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { cat: 'All', sort: 'featured', cart: 0, addedName: '' }; }
+  renderVals() {
+    const s = this.state;
+    const all = [
+      { id: 1, cat: 'Neoprene Dumbbells', name: 'AmeriLogics 3 LB Dumbbells', detail: 'Pair of 3 LB dumbbells', price: 14.99, tint: '#FEDFED', img: 'assets/dumbbells-3lb.jpg' },
+      { id: 2, cat: 'Dumbbell Sets', name: 'AmeriLogics Dumbbell Set', detail: '(3 LB, 5 LB, 8 LB) with Rack', price: 79.99, tint: '#FFF3D1', img: 'assets/dumbbell-set.jpg' },
+      { id: 3, cat: 'Storage & Organization', name: 'AmeriLogics Dumbbell Rack', detail: '(Holds 6 Weights)', price: 29.99, tint: '#FDE8D9', img: 'assets/dumbbell-rack.jpg' },
+      { id: 4, cat: 'Fitness Accessories', name: 'AmeriLogics Fitness Bundle', detail: 'Mat, Resistance Band, Jump Rope & Shaker', price: 39.99, tint: '#E0E8FE', img: 'assets/fitness-bundle.jpg' }
+    ];
+    let list = all.filter((p) => s.cat === 'All' || p.cat === s.cat);
+    if (s.sort === 'price-asc') list = list.slice().sort((a, b) => a.price - b.price);
+    if (s.sort === 'price-desc') list = list.slice().sort((a, b) => b.price - a.price);
+    if (s.sort === 'name') list = list.slice().sort((a, b) => a.name.localeCompare(b.name));
+    const catNames = ['All', 'Neoprene Dumbbells', 'Dumbbell Sets', 'Storage & Organization', 'Fitness Accessories'];
+    return {
+      cats: catNames.map((c) => {
+        const on = s.cat === c;
+        const n = c === 'All' ? all.length : all.filter((p) => p.cat === c).length;
+        return { label: c, count: String(n), on: on ? 'true' : 'false', bg: on ? '#0B0B0F' : '#FFFFFF', fg: on ? '#FFFFFF' : '#0B0B0F', border: on ? '#0B0B0F' : '#E6E8EE', pick: () => this.setState({ cat: c }) };
+      }),
+      products: list.map((p) => ({ ...p, priceLabel: '$' + p.price.toFixed(2), add: () => this.setState({ cart: this.state.cart + 1, addedName: p.name }) })),
+      countLabel: 'Showing ' + list.length + (list.length === 1 ? ' product' : ' products'),
+      sort: s.sort,
+      setSort: (e) => this.setState({ sort: e.target.value }),
+      cartCount: s.cart,
+      added: s.addedName !== '',
+      addedName: s.addedName
+    };
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>
